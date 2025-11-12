@@ -1,4 +1,4 @@
-KoShelf Docker
+## KoShelf Docker
 
 Unofficial Docker image for [KoShelf](https://github.com/paviro/KoShelf). \
 All your KOReader notes & highlights combined into a beautiful reading dashboard with statistics.
