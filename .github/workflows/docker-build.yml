@@ -6,7 +6,7 @@ on:
       koshelf_version:
         description: 'KoShelf version to build (tag or branch)'
         required: true
-        default: 'main'
+        default: 'latest'
       docker_tag:
         description: 'Docker image tag (e.g., v1.2.3 or latest)'
         required: true
@@ -14,15 +14,16 @@ on:
       platforms:
         description: 'Build platforms (comma-separated)'
         required: true
-        default: 'linux/amd64'
+        default: 'linux/amd64,linux/arm64'
         type: choice
         options:
           - 'linux/amd64'
           - 'linux/arm64'
+          - 'linux/amd64,linux/arm64'
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: ${{ github.repository_owner }}/koshelf
 
 jobs:
   build:
@@ -56,7 +57,7 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "koshelf_version=${{ inputs.koshelf_version }}" >> $GITHUB_OUTPUT
           else
-            echo "koshelf_version=main" >> $GITHUB_OUTPUT
+            echo "koshelf_version=latest" >> $GITHUB_OUTPUT
           fi
 
       - name: Determine platforms
@@ -65,7 +66,7 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "platforms=${{ inputs.platforms }}" >> $GITHUB_OUTPUT
           else
-            echo "platforms=linux/amd64" >> $GITHUB_OUTPUT
+            echo "platforms=linux/amd64,linux/arm64" >> $GITHUB_OUTPUT
           fi
 
       - name: Extract metadata

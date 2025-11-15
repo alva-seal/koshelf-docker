@@ -1,26 +1,26 @@
-FROM rust:1.91-slim AS builder
+FROM debian:12-slim AS downloader
 
 RUN apt-get update && apt-get install -y \
-    git \
-    nodejs \
-    npm \
-    pkg-config \
-    libssl-dev \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /build
+WORKDIR /tmp
 
-ARG KOSHELF_VERSION=main
-RUN git clone --depth 1 --branch ${KOSHELF_VERSION} https://github.com/paviro/KoShelf.git .
+ARG KOSHELF_VERSION=v0.1.0
+ARG TARGETARCH
 
-RUN cargo build --release && \
-    strip target/release/koshelf
+RUN case ${TARGETARCH} in \
+    "amd64") ARCH="x86_64" ;; \
+    "arm64") ARCH="aarch64" ;; \
+    *) echo "Unsupported architecture: ${TARGETARCH}" && exit 1 ;; \
+    esac && \
+    curl -L "https://github.com/paviro/KoShelf/releases/download/${KOSHELF_VERSION}/koshelf-${ARCH}-unknown-linux-musl" \
+    -o /tmp/koshelf && \
+    chmod +x /tmp/koshelf
 
 FROM gcr.io/distroless/cc-debian12
 
-COPY --from=builder /build/target/release/koshelf /usr/local/bin/koshelf
-
-COPY --from=builder --chown=65532:65532 /build/target/release/koshelf /koshelf
+COPY --from=downloader --chown=65532:65532 /tmp/koshelf /koshelf
 
 USER 65532
 
