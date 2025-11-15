@@ -12,14 +12,14 @@ on:
         required: true
         default: 'latest'
       platforms:
-        description: 'Build platforms (comma-separated)'
+        description: 'Build platforms'
         required: true
         default: 'linux/amd64,linux/arm64'
         type: choice
         options:
+          - 'linux/amd64,linux/arm64'
           - 'linux/amd64'
           - 'linux/arm64'
-          - 'linux/amd64,linux/arm64'
 
 env:
   REGISTRY: ghcr.io
@@ -75,16 +75,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=${{ inputs.docker_tag }},enable=${{ github.event_name == 'workflow_dispatch' }}
-            type=ref,event=tag
-            type=ref,event=pr
+            type=raw,value=${{ inputs.docker_tag }}
             type=sha,prefix=sha-
-          labels: |
-            org.opencontainers.image.title=KoShelf Docker
-            org.opencontainers.image.description=Dockerized KoShelf - Self-hosted ebook library and server
-            org.opencontainers.image.vendor=${{ github.repository_owner }}
-            io.koshelf.upstream.version=${{ steps.version.outputs.koshelf_version }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
