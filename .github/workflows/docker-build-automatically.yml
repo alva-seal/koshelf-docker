@@ -30,6 +30,7 @@ jobs:
           platforms='linux/amd64,linux/arm64'
           echo "Latest release version: ${{ steps.latest_release.outputs.release }}"
           echo "Repository variable: ${{ vars.KOSHELF_VERSION}}"
+          echo "test: ${{vars.KOSHELF_VERSION != steps.latest_release.outputs.release}}"
 
   build:
     runs-on: ubuntu-latest
