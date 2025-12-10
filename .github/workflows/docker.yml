@@ -21,8 +21,8 @@ jobs:
           excludes: 'prerelease, draft'                                                                                                                              
                                                                                                                                                                      
       - name: Display Latest Release  
-        run: koshelf_version=${{ steps.latest_release.outputs.release }}
-        run: platforms='linux/amd64,linux/arm64'
+        # run: koshelf_version=${{ steps.latest_release.outputs.release }}
+        # run: platforms='linux/amd64,linux/arm64'
         run: echo "Latest release version: ${{ steps.latest_release.outputs.release }}"
         run: echo "Repository variable: ${{ vars.KOSHELF_VERSION}}
 
