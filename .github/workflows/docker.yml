@@ -72,4 +72,4 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
-            KOSHELF_VERSION=${{ koshelf_version }}
+            KOSHELF_VERSION=${{ steps.latest_release.outputs.release }}
