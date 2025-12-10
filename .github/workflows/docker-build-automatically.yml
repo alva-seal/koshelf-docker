@@ -62,7 +62,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=${{ inputs.koshelf_version }}
+            type=raw,value=${{ steps.latest_release.outputs.release }}
             type=raw,value=latest
             type=sha,prefix=sha-
 
