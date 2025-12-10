@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /tmp
 
 ARG KOSHELF_VERSION=latest
-ARG TARGETARCH
+ARG TARGETARCH=linux/amd64,linux/arm64
 
 RUN if [ "$KOSHELF_VERSION" = "latest" ]; then \
         echo "Fetching latest KoShelf version..." && \
