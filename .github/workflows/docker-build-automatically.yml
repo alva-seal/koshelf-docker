@@ -1,7 +1,7 @@
 name: Build and Push Docker Image automatically
 on:
   schedule:
-    - cron: '35 * * * *'
+    - cron: '35 * * 11 *'
   workflow_dispatch:
     
 env:
