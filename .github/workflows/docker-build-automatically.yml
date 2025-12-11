@@ -102,3 +102,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: |
             KOSHELF_VERSION=${{ needs.fetch-release.outputs.release_version }}
+            
+      - name: Store Repository Variable                                                                                                                              
+       run: gh variable set KOSHELF_VERSION --body ${{ needs.fetch-release.outputs.release_version }}     
