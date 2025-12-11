@@ -40,8 +40,9 @@ jobs:
            with:                                                                                                                                                     
              image: ghcr.io/${{ github.repository }}/koshelf:latest                                                                                          
                                                                                                                                                                      
-         - name: Display Docker image version                                                                                                                        
-           run: echo "Docker image version: ${{ steps.metadata.outputs.version }}" 
+         - name: Display Docker image version
+           run: |
+             echo "Latest release version: ${{ steps.metadata.outputs.version }}"
 
   build:
     runs-on: ubuntu-latest
