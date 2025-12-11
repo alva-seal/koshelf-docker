@@ -42,11 +42,11 @@ jobs:
                                                                                                                                                                      
       - name: Retrieve latest package version                                                                                                                        
         id: get_version                                                                                                                                              
-        run: |                                                                                                                                                       
-          PACKAGE_NAME="koshelf-docker"
+        run: |
+          PACKAGE_NAME="koshelf"
           PACKAGE_OWNER="alva-seal"
           PACKAGE_TYPE="container"
-          LATEST_VERSION=$(gh api "repos/${PACKAGE_OWNER}/packages/${PACKAGE_TYPE}/${PACKAGE_NAME}/versions" --jq '.[0].name')                                       
+          LATEST_VERSION=$(gh api "user/packages/${PACKAGE_TYPE}/${PACKAGE_NAME}/versions" --jq '.[0].name')                                       
           echo "Latest version: $LATEST_VERSION"                                                                                                                     
           echo "LATEST_VERSION=$LATEST_VERSION" >> $GITHUB_ENV                                                                                                       
                                                                                                                                                                      
