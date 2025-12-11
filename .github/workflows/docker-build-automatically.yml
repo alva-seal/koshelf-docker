@@ -39,9 +39,6 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         
-      - name: Set up GitHub CLI                                                                                                                                      
-        uses: cli/cli-action@v2   
-        
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         
@@ -74,5 +71,5 @@ jobs:
           build-args: |
             KOSHELF_VERSION=${{ needs.fetch-release.outputs.release_version }} 
         
-      - name: Store Repository Variable                                                                                                                              
-        run: gh variable set KOSHELF_VERSION --body ${{ needs.fetch-release.outputs.release_version }}     
+      #- name: Store Repository Variable                                                                                                                              
+      #  run: gh variable set KOSHELF_VERSION --body ${{ needs.fetch-release.outputs.release_version }}     
