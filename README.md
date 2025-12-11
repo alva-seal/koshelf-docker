@@ -34,7 +34,7 @@ This setup allows for seamless syncing of your reading data between devices whil
 ### Enviroment Variables
 |Enviroment Variable| cli flag|
 |-------------------|---------|
-|KOSHELF_BOOKS_PATH|flag|--books-path|
+|KOSHELF_BOOKS_PATH|--books-path|
 |KOSHELF_STATISTICS_DB|--statistics-db| 
 |KOSHELF_PORT|--port|
 |KOSHELF_DOCSETTINGS_PATH|--docsettings-path|
