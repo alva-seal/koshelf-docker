@@ -29,19 +29,30 @@ jobs:
   get-version:                                                                                                                                                       
     runs-on: ubuntu-latest                                                                                                                                           
     outputs:
-      release_docker: ${{ steps.metadata.outputs.tags}}                                                                                                                                                                 
+      release_docker: LATEST_VERSION                                                                                                                                                     
     steps:                                                                                                                                                        
-         - name: Checkout repository                                                                                                                                 
-           uses: actions/checkout@v3                                                                                                                                 
+      - name: Checkout repository                                                                                                                                 
+        uses: actions/checkout@v3                                                                                                                                 
                                                                                                                                                                      
-         - name: Extract Docker image metadata                                                                                                                       
-           id: metadata                                                                                                                                              
-           uses: mithro/docker-metadata-action@v1                                                                                                                    
-           with:                                                                                                                                                     
-             images: ghcr.io/${{ env.REGISTRY }}/koshelf                                                                                                             
-         - name: Display Docker image version
-           run: |
-             echo "Latest release version: ${{ steps.metadata.outputs.tags }}"
+      - name: Set up GitHub CLI                                                                                                                                      
+        uses: cli/cli-action@v2                                                                                                                                      
+                                                                                                                                                                     
+      - name: Authenticate with GitHub                                                                                                                               
+        run: gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"                                                                                            
+                                                                                                                                                                     
+      - name: Retrieve latest package version                                                                                                                        
+        id: get_version                                                                                                                                              
+        run: |                                                                                                                                                       
+          PACKAGE_NAME="koshelf"
+          PACKAGE_OWNER="alva-seal"
+          PACKAGE_TYPE="container"
+          LATEST_VERSION=$(gh api "repos/${PACKAGE_OWNER}/packages/${PACKAGE_TYPE}/${PACKAGE_NAME}/versions" --jq '.[0].name')                                       
+          echo "Latest version: $LATEST_VERSION"                                                                                                                     
+          echo "LATEST_VERSION=$LATEST_VERSION" >> $GITHUB_ENV                                                                                                       
+                                                                                                                                                                     
+      - name: Use the latest version                                                                                                                                 
+        run: |                                                                                                                                                       
+          echo "Using package version $LATEST_VERSION" 
 
   build:
     runs-on: ubuntu-latest
