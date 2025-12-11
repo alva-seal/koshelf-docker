@@ -12,7 +12,7 @@ jobs:
   fetch-release:
     runs-on: ubuntu-latest
     outputs:
-      release_version: ${{ steps.latest_release.outputs.tag }}
+      release_version: ${{ steps.latest_release.outputs.version }}
     steps:
       - name: Get Latest Release
         id: latest_release
@@ -24,12 +24,12 @@ jobs:
                                                                                                                                                                      
       - name: Display Latest Release  
         run: |
-          echo "Latest release version: ${{ steps.latest_release.outputs.tag }}"
+          echo "Latest release version: ${{ steps.latest_release.outputs.version }}"
 
   get-version:                                                                                                                                                       
     runs-on: ubuntu-latest                                                                                                                                           
     outputs:
-      release_docker: ${{ steps.metadata.outputs.version}}                                                                                                                                                                 
+      release_docker: ${{ steps.metadata.outputs.tag}}                                                                                                                                                                 
     steps:                                                                                                                                                        
          - name: Checkout repository                                                                                                                                 
            uses: actions/checkout@v3                                                                                                                                 
@@ -38,11 +38,10 @@ jobs:
            id: metadata                                                                                                                                              
            uses: mithro/docker-metadata-action@v1                                                                                                                    
            with:                                                                                                                                                     
-             images: ghcr.io/${{ env.REGISTRY }}/koshelf:latest                                                                                          
-                                                                                                                                                                     
+             images: ghcr.io/${{ env.REGISTRY }}/koshelf                                                                                                             
          - name: Display Docker image version
            run: |
-             echo "Latest release version: ${{ steps.metadata.outputs.version }}"
+             echo "Latest release version: ${{ steps.metadata.outputs.tag }}"
 
   build:
     runs-on: ubuntu-latest
