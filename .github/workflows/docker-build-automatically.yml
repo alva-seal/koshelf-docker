@@ -58,6 +58,9 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.actor }}/koshelf-docker
+            org.opencontainers.image.title=Koshelf-Docker
           tags: |
             type=raw,value=${{ needs.fetch-release.outputs.release_version }}
             type=raw,value=latest
@@ -69,6 +72,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          annotations: ${{ steps.meta.outputs.annotations }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           platforms: linux/amd64,linux/arm64
