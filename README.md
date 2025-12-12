@@ -38,7 +38,7 @@ This setup allows for seamless syncing of your reading data between devices whil
 |KOSHELF_STATISTICS_DB: "/settings"|--statistics-db| Path to the folder with the statistics.sqlite3 file for additional reading stats|
 |KOSHELF_PORT: 3000|--port|Port for web server mode (default: 3000)|
 |KOSHELF_DOCSETTINGS_PATH: "/docsettings"|--docsettings-path|Path to KOReader's docsettings folder for users who store metadata separately (requires KOSHELF_BOOKS_PATH, mutually exclusive with KOSHELF_HASHDOCSETTINGS_PATH)|
-|KOSHELF_HASHDOCSETTINGS_PATH|--hashdocsettings-path|Path to KOReader's hashdocsettings folder for users who store metadata by content hash (requires KOSHELF_BOOKS_PATH, mutually exclusive with KOSHELF_DOCSETTINGS_PATH)|
+|KOSHELF_HASHDOCSETTINGS_PATH: "/hashdocsettings"|--hashdocsettings-path|Path to KOReader's hashdocsettings folder for users who store metadata by content hash (requires KOSHELF_BOOKS_PATH, mutually exclusive with KOSHELF_DOCSETTINGS_PATH)|
 |KOSHELF_OUTPUT: True|--output|Output directory for the generated site|
 |KOSHELF_WATCH: True|--watch|Enable file watching with static output (requires KOSHELF_OUTPUT)|
 |KOSHELF_TITLE: "My KoShelf"|--title|Site title (default: "KoShelf")|
@@ -51,4 +51,4 @@ This setup allows for seamless syncing of your reading data between devices whil
 |KOSHELF_INCLUDE_ALL_STATS: True|--include-all-stats|By default, statistics are filtered to only include books present in your KOSHELF_BOOKS_PATH directory. This prevents deleted books or external files (like Wallabag articles) from skewing your recap and statistics. Use this flag to include statistics for all books in the database, regardless of whether they exist in your library.|
 |KOSHELF_LANGUAGE: "de_DE"|--language|Language for UI translations. Supported: de, en, fr, pt. Use full locale code (e.g., en_US, de_DE, pt_BR) for correct date formatting. Default: en_US more languages might be supported by now please look at [Koshelf](https://github.com/paviro/KoShelf) to check |
 
-for detailed information regarding the cli flags please look at the h[Koshelf](https://github.com/paviro/KoShelf) repository too.
+for detailed information regarding the cli flags please look at the [Koshelf](https://github.com/paviro/KoShelf) repository too.
