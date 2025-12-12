@@ -62,7 +62,7 @@ if [ "$KOSHELF_INCLUDE_ALL_STATS" = "true" ]; then
 fi
 
 if [ -n "KOSHELF_LANGUAGE" ]; then
-    ARGS="$ARGS --language \"KOSHELF_LANGUAGE\""
+    ARGS="$ARGS --language $KOSHELF_LANGUAGE"
 fi
 
 echo "Starting KoShelf with: /koshelf $ARGS $@"
