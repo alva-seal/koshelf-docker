@@ -58,7 +58,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          annotations: |
+          labels: |
             org.opencontainers.image.source=https://github.com/${{ github.actor }}/koshelf-docker
             org.opencontainers.image.title=Koshelf-Docker
             org.opencontainers.image.description=Self-hosted ebook library with KOReader integration
