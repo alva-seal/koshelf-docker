@@ -61,7 +61,7 @@ if [ "$KOSHELF_INCLUDE_ALL_STATS" = "true" ]; then
     ARGS="$ARGS --include-all-stats"
 fi
 
-if [ -n "KOSHELF_LANGUAGE" ]; then
+if [ -n "$KOSHELF_LANGUAGE" ]; then
     ARGS="$ARGS --language $KOSHELF_LANGUAGE"
 fi
 
