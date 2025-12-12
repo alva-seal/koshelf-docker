@@ -62,7 +62,10 @@ jobs:
             org.opencontainers.image.source=https://github.com/${{ github.actor }}/koshelf-docker
             org.opencontainers.image.title=Koshelf-Docker
             org.opencontainers.image.description=Self-hosted ebook library with KOReader integration
-            
+          annotations: |
+            org.opencontainers.image.source=https://github.com/${{ github.actor }}/koshelf-docker
+            org.opencontainers.image.title=Koshelf-Docker
+            org.opencontainers.image.description=Self-hosted ebook library with KOReader integration
           tags: |
             type=raw,value=${{ needs.fetch-release.outputs.release_version }}
             type=raw,value=latest
@@ -78,6 +81,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           platforms: linux/amd64,linux/arm64
+          outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=Self-hosted ebook library with KOReader integration
           build-args: |
             KOSHELF_VERSION=${{ needs.fetch-release.outputs.release_version }} 
   
