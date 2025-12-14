@@ -32,22 +32,23 @@ The KoShelf Docker container will automatically reflect the latest notes, highli
 This setup allows for seamless syncing of your reading data between devices while KoShelf always serves the most recent version.
 
 ### Enviroment Variables
-|Enviroment Variable| cli flag|
-|-------------------|---------|
-|KOSHELF_BOOKS_PATH|--books-path|
-|KOSHELF_STATISTICS_DB|--statistics-db| 
-|KOSHELF_PORT|--port|
-|KOSHELF_DOCSETTINGS_PATH|--docsettings-path|
-|KOSHELF_HASHDOCSETTINGS_PATH|--hashdocsettings-path|
-|KOSHELF_OUTPUT|--output|
-|KOSHELF_WATCH|--watch|
-|KOSHELF_TITLE|--title|
-|KOSHELF_INCLUDE_UNREAD|--include-unread|
-|KOSHELF_HEATMAP_SCALE_MAX|--heatmap-scale-max|
-|KOSHELF_TIMEZONE|--timezone|
-|KOSHELF_DAY_START_TIME|--day-start-time|
-|KOSHELF_MIN_PAGES_PER_DAY|--min-pages-per-day|
-|KOSHELF_MIN_TIME_PER_DAY|--min-time-per-day|
-|KOSHELF_INCLUDE_ALL_STATS|--include-all-stats|
+|Enviroment Variable| cli flag|explanaition|
+|-------------------|---------|------------|
+|KOSHELF_LIBRARY_PATH: "/books"|--library-path|Path(s) to folders containing ebooks (EPUB, FB2, MOBI) and/or comics (CBZ, CBR) with KoReader metadata. Can be specified multiple times. <br> replaces the deprecated KOSHELF_BOOKS_PATH (can still be used for now)|
+|KOSHELF_STATISTICS_DB: "/settings"|--statistics-db| Path to the folder with the statistics.sqlite3 file for additional reading stats|
+|KOSHELF_PORT: 3000|--port|Port for web server mode (default: 3000)|
+|KOSHELF_DOCSETTINGS_PATH: "/docsettings"|--docsettings-path|Path to KOReader's docsettings folder for users who store metadata separately (requires KOSHELF_BOOKS_PATH, mutually exclusive with KOSHELF_HASHDOCSETTINGS_PATH)|
+|KOSHELF_HASHDOCSETTINGS_PATH: "/hashdocsettings"|--hashdocsettings-path|Path to KOReader's hashdocsettings folder for users who store metadata by content hash (requires KOSHELF_BOOKS_PATH, mutually exclusive with KOSHELF_DOCSETTINGS_PATH)|
+|KOSHELF_OUTPUT: True|--output|Output directory for the generated site|
+|KOSHELF_WATCH: True|--watch|Enable file watching with static output (requires KOSHELF_OUTPUT)|
+|KOSHELF_TITLE: "My KoShelf"|--title|Site title (default: "KoShelf")|
+|KOSHELF_INCLUDE_UNREAD: True|--include-unread|Include unread items (files without KoReader metadata)|
+|KOSHELF_HEATMAP_SCALE_MAX: "auto"|--heatmap-scale-max|Maximum value for heatmap color intensity scaling (e.g., "auto", "1h", "1h30m", "45min"). Values above this will still be shown but use the highest color intensity. Default is "auto" for automatic scaling|
+|KOSHELF_TIMEZONE: "Europe/Oslo" |--timezone|Timezone to interpret timestamps (IANA name, e.g., Australia/Sydney); defaults to system local|
+|KOSHELF_DAY_START_TIME: "02:00" |--day-start-time|Logical day start time as HH:MM (default: 00:00)|
+|KOSHELF_MIN_PAGES_PER_DAY: 3|--min-pages-per-day|Minimum pages read per book per day to be counted in statistics|
+|KOSHELF_MIN_TIME_PER_DAY: "10m"|--min-time-per-day|Minimum reading time per book per day to be counted in statistics (e.g., "15m", "1h") <br> Note: If both KOSHELF_MIN_PAGES_PER_DAY and KOSHELF_MIN_TIME_PER_DAY are provided, a book's data for a day is counted if either condition is met for that book on that day. These filters apply per book per day, meaning each book must individually meet the threshold for each day to be included in statistics.|
+|KOSHELF_INCLUDE_ALL_STATS: True|--include-all-stats|By default, statistics are filtered to only include books present in your KOSHELF_BOOKS_PATH directory. This prevents deleted books or external files (like Wallabag articles) from skewing your recap and statistics. Use this flag to include statistics for all books in the database, regardless of whether they exist in your library.|
+|KOSHELF_LANGUAGE: "de_DE"|--language|Language for UI translations. Use full locale code (e.g., en_US, de_DE, pt_BR) for correct date formatting. Default: en_US|
 
-for detailed information regarding the cli flags please look at the https://github.com/paviro/KoShelf repository
+for detailed information regarding the cli flags please look at the [Koshelf](https://github.com/paviro/KoShelf) repository too.

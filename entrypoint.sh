@@ -4,7 +4,11 @@ set -e
 ARGS=""
 
 if [ -n "$KOSHELF_BOOKS_PATH" ]; then
-    ARGS="$ARGS --books-path $KOSHELF_BOOKS_PATH"
+    ARGS="$ARGS --library-path $KOSHELF_BOOKS_PATH"
+fi
+
+if [ -n "$KOSHELF_LIBRARY_PATH" ]; then
+    ARGS="$ARGS --library-path $KOSHELF_LIBRARY_PATH"
 fi
 
 if [ -n "$KOSHELF_STATISTICS_DB" ]; then
@@ -59,6 +63,10 @@ fi
 
 if [ "$KOSHELF_INCLUDE_ALL_STATS" = "true" ]; then
     ARGS="$ARGS --include-all-stats"
+fi
+
+if [ -n "$KOSHELF_LANGUAGE" ]; then
+    ARGS="$ARGS --language $KOSHELF_LANGUAGE"
 fi
 
 echo "Starting KoShelf with: /koshelf $ARGS $@"
