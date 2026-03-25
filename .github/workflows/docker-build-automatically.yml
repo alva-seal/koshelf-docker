@@ -21,7 +21,7 @@ jobs:
         with:
           owner: 'paviro'
           repo: 'KoShelf'
-          excludes: 'prerelease, draft'
+          excludes: ''
                                                                                                                                                                      
       - name: Display Latest Release  
         run: |
