@@ -89,5 +89,5 @@ if [ -n "$KOSHELF_TRUSTED_PROXIES" ]; then
     ARGS="$ARGS --trusted-proxies $KOSHELF_TRUSTED_PROXIES"
 fi
 
-echo "Starting KoShelf with: /koshelf $ARGS $@"
+echo "Starting KoShelf with: /koshelf serve $ARGS $@"
 eval exec /koshelf serve $ARGS "$@"
