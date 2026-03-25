@@ -49,6 +49,7 @@ This setup allows for seamless syncing of your reading data between devices whil
 |KOSHELF_MIN_PAGES_PER_DAY: 3|--min-pages-per-day|Minimum pages read per book per day to be counted in statistics|
 |KOSHELF_MIN_TIME_PER_DAY: "10m"|--min-time-per-day|Minimum reading time per book per day to be counted in statistics (e.g., "15m", "1h") <br> Note: If both KOSHELF_MIN_PAGES_PER_DAY and KOSHELF_MIN_TIME_PER_DAY are provided, a book's data for a day is counted if either condition is met for that book on that day. These filters apply per book per day, meaning each book must individually meet the threshold for each day to be included in statistics.|
 |KOSHELF_INCLUDE_ALL_STATS: True|--include-all-stats|By default, statistics are filtered to only include books present in your KOSHELF_BOOKS_PATH directory. This prevents deleted books or external files (like Wallabag articles) from skewing your recap and statistics. Use this flag to include statistics for all books in the database, regardless of whether they exist in your library.|
+|KOSHELF_IGNORE_STABLE_METADATA: "false"|--ignore-stable-page-metadata|Ignore KOReader stable page metadata for page totals and page-based stats scaling. By default, stable metadata is used when available.|
 |KOSHELF_LANGUAGE: "de_DE"|--language|Language for UI translations. Use full locale code (e.g., en_US, de_DE, pt_BR) for correct date formatting. Default: en_US|
 
 for detailed information regarding the cli flags please look at the [Koshelf](https://github.com/paviro/KoShelf) repository too.
