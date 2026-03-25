@@ -69,5 +69,9 @@ if [ -n "$KOSHELF_LANGUAGE" ]; then
     ARGS="$ARGS --language $KOSHELF_LANGUAGE"
 fi
 
+if [ -n "$KOSHELF_IGNORE_STABLE_METADATA"  "true" ]; then
+    ARGS="$ARGS --ignore-stable-page-metadata"
+fi
+
 echo "Starting KoShelf with: /koshelf $ARGS $@"
 eval exec /koshelf $ARGS "$@"
