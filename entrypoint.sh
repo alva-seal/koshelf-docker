@@ -3,6 +3,10 @@ set -e
 
 ARGS=""
 
+if [ -n "$KOSHELF_DATA_PATH" ]; then
+    ARGS="$ARGS --data-path $KOSHELF_DATA_PATH"
+fi
+
 if [ -n "$KOSHELF_BOOKS_PATH" ]; then
     ARGS="$ARGS --library-path $KOSHELF_BOOKS_PATH"
 fi
@@ -69,5 +73,21 @@ if [ -n "$KOSHELF_LANGUAGE" ]; then
     ARGS="$ARGS --language $KOSHELF_LANGUAGE"
 fi
 
-echo "Starting KoShelf with: /koshelf $ARGS $@"
-eval exec /koshelf $ARGS "$@"
+if [ -n "$INCLUDE_FILES"  "true"  ]; then
+    ARGS="$ARGS --include-files"
+fi
+
+if [ -n "$KOSHELF_IGNORE_STABLE_METADATA"  "true" ]; then
+    ARGS="$ARGS --ignore-stable-page-metadata"
+fi
+
+if [ -n "$KOSHELF_ENABLE_AUTH"  "true" ]; then
+    ARGS="$ARGS --enable-auth"
+fi
+
+if [ -n "$KOSHELF_TRUSTED_PROXIES" ]; then
+    ARGS="$ARGS --trusted-proxies $KOSHELF_TRUSTED_PROXIES"
+fi
+
+echo "Starting KoShelf with: koshelf serve $ARGS $@"
+eval exec koshelf serve $ARGS "$@"

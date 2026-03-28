@@ -35,38 +35,32 @@ RUN KOSHELF_VERSION=$(cat /tmp/version.txt) && \
     file koshelf && \
     ls -lh koshelf
 
-RUN ./koshelf --github || echo "Binary check completed"
+RUN ./koshelf github || echo "Binary check completed"
 
 FROM alpine:3.22
 
-COPY --from=downloader /tmp/version.txt /version.txt
-COPY --from=downloader /tmp/koshelf /koshelf
+COPY --from=downloader /tmp/version.txt /app/version.txt
+COPY --from=downloader /tmp/koshelf /app/koshelf
 COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
-RUN adduser -D -u 65532 koshelf && \
-    chown koshelf:koshelf /koshelf
+RUN adduser -D -u 1000 koshelf && \
+    chown koshelf:koshelf /app/koshelf
 
 ENV KOSHELF_LIBRARY_PATH="/books"
 ENV KOSHELF_STATISTICS_DB="/settings/statistics.sqlite3"
-ENV KOSHELF_PORT="3000"
-ENV KOSHELF_OUTPUT=""
-ENV KOSHELF_WATCH="false"
-ENV KOSHELF_TITLE=""
+ENV KOSHELF_DATA_PATH="/data"
+ENV KOSHELF_ENABLE_AUTH="false"
 ENV KOSHELF_INCLUDE_UNREAD="false"
-ENV KOSHELF_HEATMAP_SCALE_MAX=""
-ENV KOSHELF_TIMEZONE=""
-ENV KOSHELF_DAY_START_TIME=""
-ENV KOSHELF_MIN_PAGES_PER_DAY=""
-ENV KOSHELF_MIN_TIME_PER_DAY=""
-ENV KOSHELF_DOCSETTINGS_PATH=""
-ENV KOSHELF_HASHDOCSETTINGS_PATH=""
+ENV KOSHELF_IGNORE_STABLE_METADATA="false"
+ENV KOSHELF_PORT="3000"
+ENV PATH="/app:${PATH}"
 
-USER 65532
+USER 1000
 
 LABEL org.opencontainers.image.title="KoShelf"
-LABEL org.opencontainers.image.description="Self-hosted ebook library with KOReader integration"
+LABEL org.opencontainers.image.description="A reading companion powered by KOReader metadata — browse your library, highlights, annotations, and reading statistics from a web dashboard."
 LABEL org.opencontainers.image.source="https://github.com/paviro/KoShelf"
 
 ENTRYPOINT ["/entrypoint.sh"]
