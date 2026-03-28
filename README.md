@@ -1,7 +1,7 @@
 ## KoShelf Docker
 
 Unofficial Docker image for [KoShelf](https://github.com/paviro/KoShelf). \
-All your KOReader notes & highlights combined into a beautiful reading dashboard with statistics.
+A reading companion powered by KOReader metadata — browse your library, highlights, annotations, and reading statistics from a web dashboard.
 
 ## Breaking changes
 
