@@ -34,7 +34,8 @@ services:
 #### serve           Start the web server (API + live data refresh)
 Start the web server. Serves the embedded React app at / with API endpoints under /api/**, and automatically refreshes data on library changes. (Default in the container)
 #### export          Generate a static site
-Generate a static site to the given directory. This is not tested right now for the docker container
+Generate a static site to the given directory. enabled with the env var $KOSHELF_EXPORT: True 
+This is implemented but not tested right now for the docker container
 #### set-password    Set the authentication passwor
 `docker exec koshelf koshelf github` 
 set or rotate the serve-mode authentication password, for details see https://github.com/paviro/KoShelf/blob/main/docs/authentication.md
@@ -81,6 +82,7 @@ This setup allows for seamless syncing of your reading data between devices whil
 |KOSHELF_ENABLE_AUTH: TRUE|--enable-auth|start server with auth enabled (on first run, KoShelf generates a password and prints it once) for details see https://github.com/paviro/KoShelf/blob/main/docs/authentication.md|
 |KOSHELF_ENABLE_WRITEBACK: TRUE|--enable-writeback|writeback enabled (edit annotations and metadata from the UI) for this to work the folder KOSHELF_LIBRARY_PATH (or if used KOSHELF_DOCSETTINGS_PATH or KOSHELF_HASHDOCSETTINGS_PATH) or with the booksneeds to be writable for user with id 1000
 |KOSHELF_TRUSTED_PROXIES: True|--trusted-proxies|Comma-separated or repeated trusted reverse proxy IP/CIDR entries for forwarded client IP/proto resolution|
-
+|KOSHELF_EXPORT: True|export|Generate a static site to the given directory. The output directory can  be provided via  KOSHELF_OUTPUT|
+|KOSHELF_CONFIG: /config/koshelf.toml|-c|the path to the toml Config file. Please dont forget that this file needs to be availible in the container! For deteils look at https://github.com/paviro/KoShelf/blob/main/docs/configuration.md and https://github.com/paviro/KoShelf/blob/main/koshelf.example.toml|
 
 for detailed information regarding the cli flags please look at the [Koshelf](https://github.com/paviro/KoShelf) repository too.
