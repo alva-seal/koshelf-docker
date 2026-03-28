@@ -18,13 +18,11 @@ jobs:
     steps:
       - name: Get Latest Release
         id: latest_release
-        uses: octokit/request-action@v2.x
+        uses: pozetroninc/github-action-get-latest-release@master
         with:
-          route: GET /repos/{owner}/{repo}/releases
-          owner: paviro
-          repo: KoShelf
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          owner: 'paviro'
+          repo: 'KoShelf'
+          excludes: ''
                                                                                                                                                                      
       - name: Display Latest Release  
         run: |
