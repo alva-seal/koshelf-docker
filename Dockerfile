@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     file \
     jq \
     && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y passwd  
 
 WORKDIR /tmp
 
