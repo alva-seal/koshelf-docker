@@ -110,4 +110,4 @@ if [ -n "$KOSHELF_EXPORT" "true" ]; then
 fi
 
 echo "Starting KoShelf with: koshelf serve $ARGS $@"
-eval exec koshelf serve $ARGS "$@"
+eval exec koshelf $CMD $ARGS "$@"
