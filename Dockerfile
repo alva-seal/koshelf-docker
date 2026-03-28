@@ -5,9 +5,15 @@ RUN apt-get update && apt-get install -y \
     unzip \
     file \
     jq \
-    su-exec \
-    passwd \
     && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && \
+    apt-get install -y \
+    passwd \
+    su-exec \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
+
 ENV PATH="/usr/sbin:${PATH}"
 
 WORKDIR /tmp
