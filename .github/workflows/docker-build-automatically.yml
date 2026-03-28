@@ -75,11 +75,11 @@ jobs:
           labels: |
             org.opencontainers.image.source=https://github.com/${{ github.actor }}/koshelf-docker
             org.opencontainers.image.title=Koshelf-Docker
-            org.opencontainers.image.description=Self-hosted ebook library with KOReader integration
+            org.opencontainers.image.description=A reading companion powered by KOReader metadata — browse your library, highlights, annotations, and reading statistics from a web dashboard.
           annotations: |
             org.opencontainers.image.source=https://github.com/${{ github.actor }}/koshelf-docker
             org.opencontainers.image.title=Koshelf-Docker
-            org.opencontainers.image.description=Self-hosted ebook library with KOReader integration
+            org.opencontainers.image.description=A reading companion powered by KOReader metadata — browse your library, highlights, annotations, and reading statistics from a web dashboard.
           tags: |
             type=raw,value=${{ needs.fetch-release.outputs.release_version }}
             type=raw,value=${{ needs.fetch-release.outputs.release_type }}
