@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && \
     apt-get install -y \
     passwd \
-    su-exec \
     bash \
     && rm -rf /var/lib/apt/lists/*
 
