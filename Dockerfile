@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y \
     jq \
     su-exec \
     passwd \
-    bash \
     && rm -rf /var/lib/apt/lists/*
 ENV PATH="/usr/sbin:${PATH}"
 
