@@ -13,7 +13,7 @@ exec su-exec koshelf "$@"
 
 ARGS=""
 
-CMD=""
+CMD="serve"
 
 if [ -n "$KOSHELF_DATA_PATH" ]; then
     ARGS="$ARGS --data-path $KOSHELF_DATA_PATH"
