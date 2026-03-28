@@ -1,7 +1,19 @@
 #!/bin/sh
 set -e
 
+# Create group and user with PUID and GUID if not yet existing
+if ! id -u "$PUID" &>/dev/null; then
+    groupadd -g "$GUID" koshelf2
+    useradd -u "$PUID" -g "$GUID" -m -s /bin/bash koshelf2
+fi
+
+
+# Switch to the new user
+exec su-exec koshelf "$@"
+
 ARGS=""
+
+CMD=""
 
 if [ -n "$KOSHELF_DATA_PATH" ]; then
     ARGS="$ARGS --data-path $KOSHELF_DATA_PATH"
@@ -87,6 +99,14 @@ fi
 
 if [ -n "$KOSHELF_TRUSTED_PROXIES" ]; then
     ARGS="$ARGS --trusted-proxies $KOSHELF_TRUSTED_PROXIES"
+fi
+
+if [ -n "$KOSHELF_CONFIG" ]; then
+    ARGS="$ARGS -c $KOSHELF_CONFIG"
+fi
+
+if [ -n "$KOSHELF_EXPORT" "true" ]; then
+    CMD="export"
 fi
 
 echo "Starting KoShelf with: koshelf serve $ARGS $@"
