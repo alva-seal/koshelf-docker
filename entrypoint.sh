@@ -16,7 +16,11 @@ if [ -n "$KOSHELF_LIBRARY_PATH" ]; then
 fi
 
 if [ -n "$KOSHELF_STATISTICS_DB" ]; then
-    ARGS="$ARGS --statistics-db $KOSHELF_STATISTICS_DB"
+  # convert commas to spaces, then iterate
+  for db in $(printf '%s' "$KOSHELF_STATISTICS_DB" | tr ',' ' '); do
+    [ -z "$db" ] && continue
+    ARGS="$ARGS --statistics-db $db"
+  done
 fi
 
 if [ -n "$KOSHELF_PORT" ]; then
