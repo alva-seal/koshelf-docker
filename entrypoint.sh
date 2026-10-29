@@ -19,7 +19,7 @@ if [ -n "$KOSHELF_STATISTICS_DB" ]; then
   # convert commas to spaces, then iterate
   for db in $(printf '%s' "$KOSHELF_STATISTICS_DB" | tr ',' ' '); do
     [ -z "$db" ] && continue
-    ARGS="$ARGS --statistics-db $db"
+    ARGS="$ARGS --statistics-db $db/statistics.sqlite3"
   done
 fi
 
