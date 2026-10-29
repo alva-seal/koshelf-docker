@@ -49,7 +49,7 @@ RUN adduser -D -u 1000 koshelf && \
     chown koshelf:koshelf /app/koshelf
 
 ENV KOSHELF_LIBRARY_PATH="/books"
-ENV KOSHELF_STATISTICS_DB="/settings/statistics.sqlite3"
+ENV KOSHELF_STATISTICS_DB="/settings"
 ENV KOSHELF_DATA_PATH="/data"
 ENV KOSHELF_ENABLE_AUTH="false"
 ENV KOSHELF_INCLUDE_UNREAD="false"
